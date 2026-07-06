@@ -1,21 +1,19 @@
-
-FROM golang:1.18-alpine AS build
-# Adds argument for API key
-ARG NASA_API_KEY
-# Set working directory
+# Build a small, statically-linked binary
+FROM golang:1.23-alpine AS build
 WORKDIR /app
-# Copy over all files
-COPY . .
-# Download Go modules
+# Download modules first so this layer is cached across source-only changes
+COPY go.mod go.sum ./
 RUN go mod download
-# Compile binaries
-RUN go build -o ./apod
+COPY . .
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /apod .
 
-FROM alpine:latest  
-RUN apk --no-cache add ca-certificates
-WORKDIR /app
-COPY --from=build /app/apod ./
-# Specify internal port
+# Minimal, non-root runtime image
+FROM alpine:3.21
+RUN apk add --no-cache ca-certificates \
+  && adduser -D -H -u 10001 apod
+COPY --from=build /apod /apod
+USER apod
 EXPOSE 8080
-# Run the built app!
-CMD [ "./apod" ]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget -q --spider http://localhost:8080/ || exit 1
+ENTRYPOINT ["/apod"]
