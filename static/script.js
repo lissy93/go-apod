@@ -46,6 +46,7 @@ const render = (apod) => {
 
   const image = byId('apod-picture');
   const frame = byId('apod-dynamic-content');
+  hide(frame); // only shown for video days
 
   if (apod.media_type === 'video' && apod.url) {
     hide(image);
@@ -65,7 +66,7 @@ const render = (apod) => {
 /* Show the error box and log the detail. */
 const showError = (err) => {
   console.error(err);
-  hide(byId('apod-picture'));
+  hide(byId('plate'));
   show(byId('error'));
 };
 
