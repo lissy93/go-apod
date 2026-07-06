@@ -1,16 +1,8 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "/api/*.go",
-      "use": "@vercel/go"
-    },
-    { "src": "static/**", "use": "@vercel/static"}
-  ],
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "static",
   "rewrites": [
-    { "source": "/apod", "destination": "/api/apod.go" },
-    { "source": "/image", "destination": "/api/image.go" },
-    { "source": "/static/(.*)", "destination": "/static/$1" },
-    { "source": "/(.*)", "destination": "/static/$1" }
+    { "source": "/apod", "destination": "/api/apod" },
+    { "source": "/image", "destination": "/api/image" }
   ]
 }

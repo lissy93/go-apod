@@ -41,7 +41,7 @@
 **Example**
 
 ```
-GET https://go-apod.herokuapp.com/apod
+GET https://apod.as93.net/apod
 ```
 
 **Response**
@@ -127,8 +127,9 @@ See the [Building Locally](#building-locally) section below
 
 - `NASA_API_KEY` (Required) - Your API Key, you can sign up for one at [api.nasa.gov](https://api.nasa.gov/)
 - `PORT` (Optional) - The port to start the web server on, defaults to `8080`
-- `CORS_ALLOWED_ORIGINS` (Optional) - List of origins which can use the API, defaults to `*` / all
-- `NASA_BASE_URL` (Optional) - The base URL upstream GET requests, defaults to NASA's APOD API
+- `CORS_ALLOWED_ORIGINS` (Optional) - Comma-separated list of origins which can use the API, defaults to `*` / all
+- `NASA_BASE_URL` (Optional) - The base URL for upstream GET requests, defaults to NASA's APOD API
+- `CACHE_TTL` (Optional) - How long to cache NASA's response for, defaults to `15m`
 
 ---
 
@@ -139,7 +140,6 @@ See the [Building Locally](#building-locally) section below
 <p align="center">
   <a href="https://apod.as93.net">
   <img src="https://i.ibb.co/rvCfrbn/go-apod-screenshot.png" width="600" />
-<!--     <img width="500" title="Live preview of apod.as93.net" src="https://api.apiflash.com/v1/urltoimage?access_key=64850d88f6c645b3a144a493e725f769&url=https%3A%2F%2Fgo-apod.herokuapp.com%2F&format=webp&width=770&height=770&ttl=86400&response_type=image&wait_until=page_loaded&css=.link-wrapper%7Bdisplay%3Anone%3B%7D" /> -->
   </a>
 </p>
 
@@ -192,9 +192,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <!-- License + Copyright -->
 <p  align="center">
-  <i>© <a href="https://aliciasykes.com">Alicia Sykes</a> 2022</i><br>
+  <i>© <a href="https://aliciasykes.com">Alicia Sykes</a> 2022 - Present</i><br>
   <i>Licensed under <a href="https://gist.github.com/Lissy93/143d2ee01ccc5c052a17">MIT</a></i><br>
-  <a href="https://github.com/lissy93"><img src="https://i.ibb.co/4KtpYxb/octocat-clean-mini.png" /></a><br>
+  <a href="https://github.com/lissy93"><img src="https://cdn.as93.net/84m3gc?w=56" /></a><br>
   <sup>Thanks for visiting :)</sup>
 </p>
 
